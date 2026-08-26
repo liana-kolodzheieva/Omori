@@ -9,10 +9,11 @@
     <title>Where are you?</title>
   </head>
   <body>
-    <audio id="audio" autoplay loop>
+    <audio id="audio">
       <source src="songs/Title.mp3" type="audio/mpeg" />
     </audio>
     <div class="container">
+      <button id="start_Game" onclick="startMedia()">Start</button>
       <video src="gif/Start_Scene.mp4" id="start-scene"></video>
       <img
         src="gif/black_lamp.gif"
@@ -20,19 +21,21 @@
         id="black_lamp"
         class="white_lump"
       />
-      <image
+      <img
         src="Photo/OM_black.png"
         alt="Error"
         class="black_OMORI"
         id="black_OM"
       />
-      <image
+      <img
         src="Photo/RI_Black.png"
         alt="Error"
         class="black_OMORI"
         id="black_RI"
       />
-      <button class="buttons" id="start" onclick="startGame()">Start</button>
+      <button class="buttons" id="start" onclick="startGame()" disabled>
+        Start
+      </button>
     </div>
     <script src="Js/script.js"></script>
   </body>
