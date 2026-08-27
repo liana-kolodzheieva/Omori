@@ -72,7 +72,6 @@ body {
 }
 
 .black_OMORI {
-  animation-name: OMORI_black;
   opacity: 0%;
   position: absolute;
   font-weight: normal;
@@ -81,9 +80,10 @@ body {
 }
 
 .black_OMORI.visible {
+  animation-name: OMORI_black;
   animation-duration: 2.5s;
   animation-timing-function: ease;
-  animation-delay: 2.52s;
+  animation-delay: 2s;
   animation-fill-mode: forwards;
 }
 
@@ -97,7 +97,7 @@ body {
 }
 
 #black_lamp.move {
-  animation: WHITE_LUMP 6s ease 1s forwards;
+  animation: WHITE_LUMP 6s ease 0.7s forwards;
 }
 
 #start-scene {

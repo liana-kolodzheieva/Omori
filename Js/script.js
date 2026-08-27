@@ -6,6 +6,7 @@ const blackRI = document.getElementById("black_RI");
 const blackOM = document.getElementById("black_OM");
 const startSong = document.getElementById("start_Game");
 const blackOmori = document.getElementsByClassName("black_OMORI");
+const title = document.getElementById("title");
 
 function startMedia() {
   audio.src = "songs/Title.mp3";
@@ -13,9 +14,10 @@ function startMedia() {
   audio.volume = 0.5;
   audio.play();
 
+  title.textContent = "WhiteSpace";
   startSong.style.visibility = "hidden";
 
-  startButton.style.disabled = "false";
+  startButton.disabled = false;
   startButton.classList.add("visible");
   blackLamp.classList.add("visible");
   blackOmori[0].classList.add("visible");
@@ -23,16 +25,17 @@ function startMedia() {
 }
 
 function startGame() {
+  title.textContent = "BlackSpace";
   video.style.visibility = "visible";
+  audio.src = "songs/BlackSpace.mp3";
+  audio.play();
   video.play();
 
-  audio.src = "songs/BlackSpace.mp3";
+  blackLamp.style.opacity = "100%";
+  blackLamp.src = "gif/white_lamp.gif";
+  blackLamp.classList.add("move");
 
   blackRI.style.visibility = "hidden";
   blackOM.style.visibility = "hidden";
   startButton.style.visibility = "hidden";
-
-  blackLamp.style.opacity = "100%";
-
-  blackLamp.classList.add("move");
 }
