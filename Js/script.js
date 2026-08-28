@@ -39,3 +39,9 @@ function startGame() {
   blackOM.style.visibility = "hidden";
   startButton.style.visibility = "hidden";
 }
+
+video.addEventListener("ended", () => {
+  alert("Видео закончилось!");
+
+  // здесь твой код
+});
