@@ -7,6 +7,10 @@ const blackOM = document.getElementById("black_OM");
 const startSong = document.getElementById("start_Game");
 const blackOmori = document.getElementsByClassName("black_OMORI");
 const title = document.getElementById("title");
+const startDoor = document.getElementById("start-door");
+const Omori = document.getElementById("Omori");
+
+let canOmoriWalk = true;
 
 function startMedia() {
   audio.src = "songs/Title.mp3";
@@ -41,7 +45,29 @@ function startGame() {
 }
 
 video.addEventListener("ended", () => {
-  alert("Видео закончилось!");
+  startDoor.classList.add("visible");
+});
 
-  // здесь твой код
+startDoor.addEventListener("animationend", () => {
+  startDoor.src = "gif/door-open.gif";
+  if (canOmoriWalk) {
+    setTimeout(() => {
+      Omori.classList.add("visible");
+      Omori.src = "gif/Omori-walk-right-basic.gif";
+    }, 1500);
+
+    setTimeout(() => {
+      Omori.src = "Photo/Omori-stay-right.png";
+    }, 4450);
+
+    canOmoriWalk = false;
+  }
+});
+
+Omori.addEventListener("animationend", () => {
+  startDoor.src = "gif/door-close.gif";
+
+  setTimeout(() => {
+    startDoor.classList.add("end");
+  }, 1500);
 });

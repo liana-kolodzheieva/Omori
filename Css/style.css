@@ -110,7 +110,31 @@ body {
   object-fit: cover;
 }
 
+#start-door {
+  opacity: 0%;
+  position: absolute;
+  top: 46%;
+  left: 45%;
+}
 
+#start-door.visible {
+  animation: start-door-animation 4s ease forwards;
+}
+
+#start-door.end {
+  animation: close-door 3s ease forwards;
+}
+
+#Omori {
+  opacity: 0%;
+  position: absolute;
+  top: 47%;
+  left: 45%;
+}
+
+#Omori.visible {
+  animation: Omori-visible 4s ease forwards;
+}
 
 @keyframes LAMP_black {
   from {
@@ -147,5 +171,38 @@ body {
   }
   100% {
     opacity: 100%;
+  }
+}
+
+@keyframes start-door-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Omori-visible {
+  0% {
+    opacity: 0;
+    top: 47%;
+  }
+
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    top: 52%;
+  }
+}
+
+@keyframes close-door {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
