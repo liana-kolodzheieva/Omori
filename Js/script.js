@@ -53,7 +53,7 @@ startDoor.addEventListener("animationend", () => {
   if (canOmoriWalk) {
     setTimeout(() => {
       Omori.classList.add("visible");
-      Omori.src = "gif/Omori-walk-right-basic.gif";
+      Omori.src = "gif/Omori-walk-forward.gif";
     }, 1500);
 
     setTimeout(() => {
@@ -70,4 +70,12 @@ Omori.addEventListener("animationend", () => {
   setTimeout(() => {
     startDoor.classList.add("end");
   }, 1500);
+});
+
+startDoor.addEventListener("animationend", () => {
+  if (startDoor.classList.contains("end")) {
+    setTimeout(() => {
+      Omori.src = "gif/Omori-walk-right.gif";
+    }, 3000);
+  }
 });
