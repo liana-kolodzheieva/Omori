@@ -136,6 +136,14 @@ body {
   animation: Omori-visible 4s ease forwards;
 }
 
+#Omori.go-to-the-door-right {
+  animation: Omori-go-to-the-door-right 8s ease forwards;
+}
+
+#Omori.go-to-the-door-top {
+  animation: Omori-go-to-the-door-top 4s ease forwards;
+}
+
 @keyframes LAMP_black {
   from {
     opacity: 0;
@@ -195,6 +203,26 @@ body {
   100% {
     opacity: 1;
     top: 52%;
+  }
+}
+
+@keyframes Omori-go-to-the-door-right {
+  0% {
+    left: 45%;
+  }
+
+  100% {
+    left: 68%;
+  }
+}
+
+@keyframes Omori-go-to-the-door-top {
+  0% {
+    top: 52%;
+  }
+
+  100% {
+    top: 38%;
   }
 }
 

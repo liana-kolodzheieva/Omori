@@ -75,7 +75,20 @@ Omori.addEventListener("animationend", () => {
 startDoor.addEventListener("animationend", () => {
   if (startDoor.classList.contains("end")) {
     setTimeout(() => {
+      Omori.classList.remove("visible");
+      Omori.style.top = "52%";
+      Omori.style.opacity = "1";
+      Omori.classList.add("go-to-the-door-right");
       Omori.src = "gif/Omori-walk-right.gif";
     }, 3000);
+  }
+});
+
+Omori.addEventListener("animationend", () => {
+  if (Omori.classList.contains("go-to-the-door-right")) {
+    Omori.src = "gif/Omori-walk-top.gif";
+    Omori.classList.remove("go-to-the-door-right");
+    Omori.style.left = "68%";
+    Omori.classList.add("go-to-the-door-top");
   }
 });
