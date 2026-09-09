@@ -36,7 +36,7 @@ body {
 .buttons {
   background-color: black;
   color: white;
-  border: 3px solid white;
+  border: 5px solid white;
   outline: 3px solid black;
 }
 
@@ -97,7 +97,7 @@ body {
 }
 
 #black_lamp.move {
-  animation: WHITE_LUMP 6s ease 0.7s forwards;
+  animation: WHITE_LUMP 4s linear 0.7s forwards;
 }
 
 #start-scene {
@@ -137,11 +137,74 @@ body {
 }
 
 #Omori.go-to-the-door-right {
-  animation: Omori-go-to-the-door-right 8s ease forwards;
+  animation: Omori-go-to-the-door-right 5s linear forwards;
 }
 
 #Omori.go-to-the-door-top {
-  animation: Omori-go-to-the-door-top 4s ease forwards;
+  animation: Omori-go-to-the-door-top 2.5s linear forwards;
+}
+
+#window {
+  opacity: 0%;
+}
+
+#dialogue {
+  position: absolute;
+  width: 93%;
+  height: 20%;
+  top: 71%;
+  left: 3%;
+  z-index: 100;
+}
+
+p {
+  font-family: "OMORI_GAME Regular";
+  font-weight: normal;
+  font-size: 44px;
+  margin: 15px;
+}
+
+#text1 {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+#text2 {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+#yes,
+#no {
+  font-family: "OMORI_GAME Regular";
+  position: absolute;
+  width: 12%;
+  height: 7%;
+  font-size: 44px;
+  cursor: pointer;
+}
+
+#no {
+  top: 62%;
+  left: 84.82%;
+}
+
+#yes {
+  top: 53%;
+  left: 84.82%;
+}
+
+#window.visible {
+  animation: window-visible 1s ease forwards;
+}
+
+@keyframes window-visible {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes LAMP_black {
@@ -212,7 +275,7 @@ body {
   }
 
   100% {
-    left: 68%;
+    left: 68.5%;
   }
 }
 
