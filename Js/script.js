@@ -17,6 +17,8 @@ const yesButton = document.getElementById("yes");
 const noButton = document.getElementById("no");
 const catDoor = document.getElementById("CatDoor");
 const white = document.getElementById("white");
+const catDecisionRoom = document.getElementById("Cat-decision-room");
+const mewoOnTheTable = document.getElementById("Mewo-Table");
 
 let NoAnswersCount = 0;
 let YesAnswersCount = 0;
@@ -185,12 +187,23 @@ Omori.addEventListener("animationend", () => {
     Omori.classList.remove("Go-into-the-door");
     white.classList.add("visible");
     fadeOutAudio();
-    Omori.style.opacity = "0";
+    Omori.style.opacity = 0;
+    setTimeout(() => {
+      video.style.visibility = "hidden";
+      catDoor.style.visibility = "hidden";
+      mewoOnTheTable.style.opacity = 1;
+      catDecisionRoom.style.opacity = 1;
+      Omori.style.zIndex = 40;
+      Omori.style.top = "51%";
+      Omori.style.left = "47.8%";
+      Omori.src = "../Photo/Omori-stay-right.png";
+      Omori.style.opacity = 1;
+    }, 4000);
   }
 });
 
-white.addEventListener("animationend", async () => {
-  if (white.classList.contains("visible")) {
+white.addEventListener("animationend", async (event) => {
+  if (event.animationName === "white-visible") {
     white.classList.remove("visible");
     white.style.opacity = 1;
 
@@ -207,6 +220,21 @@ white.addEventListener("animationend", async () => {
     } catch (error) {
       console.error("Could not play Cat.mp3:", error);
     }
+  }
+
+  if (event.animationName === "white-visible-end") {
+    setTimeout(() => {
+      Omori.src = "gif/Omori-walk-forward.gif";
+      Omori.classList.add("Go-to-the-table");
+    }, 2000);
+  }
+});
+
+Omori.addEventListener("animationend", () => {
+  if (Omori.classList.contains("Go-to-the-table")) {
+    Omori.classList.remove("Go-to-the-table");
+    Omori.style.top = "69%";
+    Omori.src = "Photo/Omori-stay-right.png";
   }
 });
 

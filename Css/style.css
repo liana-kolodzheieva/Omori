@@ -31,6 +31,7 @@ body {
   width: 1280px;
   height: 960px;
   position: relative;
+  display: flex;
 }
 
 .buttons {
@@ -52,6 +53,7 @@ body {
   font-family: "OMORI_GAME Regular";
   font-weight: normal;
   font-size: 58px;
+  z-index: 90;
 }
 
 #start.visible {
@@ -148,8 +150,14 @@ body {
   animation: Omori-go-into-the-door 3s ease forwards;
 }
 
+#Omori.Go-to-the-table {
+  animation: Omori-go-to-the-table 3s linear forwards;
+}
+
 #window {
+  display: flex;
   opacity: 0%;
+  z-index: 90;
 }
 
 #dialogue {
@@ -158,7 +166,7 @@ body {
   height: 20%;
   top: 71%;
   left: 3%;
-  z-index: 100;
+  z-index: 90;
 }
 
 p {
@@ -186,16 +194,21 @@ p {
   height: 7%;
   font-size: 44px;
   cursor: pointer;
+  z-index: 90;
 }
 
 #no {
+  position: absolute;
   top: 62%;
   left: 84.82%;
+  z-index: 90;
 }
 
 #yes {
+  position: absolute;
   top: 53%;
   left: 84.82%;
+  z-index: 90;
 }
 
 #window.visible {
@@ -219,6 +232,7 @@ p {
   width: 100%;
   height: 100%;
   opacity: 0%;
+  z-index: 50;
 }
 
 #white.visible {
@@ -235,6 +249,20 @@ p {
 
 #audio.noVolumeEnd {
   animation: noVolumeEnd 3s linear forwards;
+}
+
+#Mewo-Table {
+  position: absolute;
+  top: 71.44%;
+  left: 43.5%;
+  opacity: 0;
+  z-index: 40;
+}
+
+#Cat-decision-room {
+  opacity: 0;
+  position: absolute;
+  z-index: 30;
 }
 
 @keyframes noVolume {
@@ -382,6 +410,15 @@ p {
   100% {
     opacity: 0;
     top: 35%;
+  }
+}
+
+@keyframes Omori-go-to-the-table {
+  0% {
+    top: 51%;
+  }
+  100% {
+    top: 69%;
   }
 }
 
