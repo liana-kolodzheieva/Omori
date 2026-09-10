@@ -144,6 +144,10 @@ body {
   animation: Omori-go-to-the-door-top 2.5s linear forwards;
 }
 
+#Omori.Go-into-the-door {
+  animation: Omori-go-into-the-door 3s ease forwards;
+}
+
 #window {
   opacity: 0%;
 }
@@ -196,6 +200,86 @@ p {
 
 #window.visible {
   animation: window-visible 1s ease forwards;
+}
+
+#CatDoor {
+  opacity: 0%;
+  position: absolute;
+  left: 68.35%;
+  top: 33.8%;
+}
+
+#CatDoor.visible {
+  animation: door-visible 5s linear forwards;
+}
+
+#white {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0%;
+}
+
+#white.visible {
+  animation: white-visible 3s linear forwards;
+}
+
+#white.visible-end {
+  animation: white-visible-end 3s linear forwards;
+}
+
+#audio.noVolume {
+  animation: noVolume 3s linear forwards;
+}
+
+#audio.noVolumeEnd {
+  animation: noVolumeEnd 3s linear forwards;
+}
+
+@keyframes noVolume {
+  from {
+    volume: 1;
+  }
+  to {
+    volume: 0;
+  }
+}
+
+@keyframes noVolumeEnd {
+  from {
+    volume: 0;
+  }
+  to {
+    volume: 1;
+  }
+}
+
+@keyframes white-visible {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes white-visible-end {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes door-visible {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes window-visible {
@@ -275,7 +359,7 @@ p {
   }
 
   100% {
-    left: 68.5%;
+    left: 68.2%;
   }
 }
 
@@ -286,6 +370,18 @@ p {
 
   100% {
     top: 38%;
+  }
+}
+
+@keyframes Omori-go-into-the-door {
+  0% {
+    opacity: 1;
+    top: 38%;
+  }
+
+  100% {
+    opacity: 0;
+    top: 35%;
   }
 }
 

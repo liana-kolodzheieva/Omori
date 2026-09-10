@@ -38,17 +38,24 @@
         id="black_RI"
       />
 
-      <button class="buttons" id="start" onclick="startGame()" disabled>
-        Start
-      </button>
+      <img src="Photo/door.png" alt="door" id="CatDoor" />
 
       <img src="Photo/door.png" alt="door" id="start-door" />
 
       <img src="Photo/Omori-stay-right.png" alt="Omori" id="Omori" />
 
+      <div id="white">
+       </div>
+
+      <button class="buttons" id="start" onclick="startGame()" disabled>
+        Start
+      </button>
+
       <div id="window">
         <div id="options">
-          <button id="yes" class="buttons">Yes</button>
+          <button id="yes" class="buttons" onclick="handleYesAnswers()">
+            Yes
+          </button>
           <button id="no" class="buttons" onclick="handleNoAnswers()">
             No
           </button>
@@ -58,7 +65,6 @@
           <p id="text2">Do you want to open it?</p>
         </div>
       </div>
-    </div>
     <script src="Js/script.js"></script>
   </body>
 </html>
