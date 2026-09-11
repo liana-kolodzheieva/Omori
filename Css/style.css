@@ -169,6 +169,10 @@ body {
   z-index: 90;
 }
 
+#dialogue.visible {
+  animation: dialogue-visible 1s linear forwards;
+}
+
 p {
   font-family: "OMORI_GAME Regular";
   font-weight: normal;
@@ -204,6 +208,10 @@ p {
   z-index: 90;
 }
 
+#no.visible {
+  animation: no-visible 1s linear forwards;
+}
+
 #yes {
   position: absolute;
   top: 53%;
@@ -232,7 +240,7 @@ p {
   width: 100%;
   height: 100%;
   opacity: 0%;
-  z-index: 50;
+  z-index: 60;
 }
 
 #white.visible {
@@ -265,21 +273,32 @@ p {
   z-index: 30;
 }
 
-@keyframes noVolume {
-  from {
-    volume: 1;
-  }
-  to {
-    volume: 0;
-  }
+#tail {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 20;
 }
 
-@keyframes noVolumeEnd {
-  from {
-    volume: 0;
+#eyes {
+  opacity: 0;
+  position: absolute;
+  z-index: 20;
+}
+
+#emotion {
+  opacity: 0;
+  position: absolute;
+  z-index: 20;
+}
+
+@keyframes no-visible {
+  0% {
+    opacity: 0;
   }
-  to {
-    volume: 1;
+  100% {
+    opacity: 1;
   }
 }
 
@@ -311,6 +330,15 @@ p {
 }
 
 @keyframes window-visible {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dialogue-visible {
   0% {
     opacity: 0;
   }

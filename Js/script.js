@@ -19,9 +19,13 @@ const catDoor = document.getElementById("CatDoor");
 const white = document.getElementById("white");
 const catDecisionRoom = document.getElementById("Cat-decision-room");
 const mewoOnTheTable = document.getElementById("Mewo-Table");
+const mewo = document.getElementById("emotion");
+const eyes = document.getElementById("eyes");
+const tail = document.getElementById("tail");
 
 let NoAnswersCount = 0;
 let YesAnswersCount = 0;
+let kostyl = 0;
 let canOmoriWalk = true;
 const audioTargetVolume = 0.5;
 
@@ -203,38 +207,94 @@ Omori.addEventListener("animationend", () => {
 });
 
 white.addEventListener("animationend", async (event) => {
-  if (event.animationName === "white-visible") {
-    white.classList.remove("visible");
-    white.style.opacity = 1;
+  switch (kostyl) {
+    case 0:
+      if (event.animationName === "white-visible") {
+        white.classList.remove("visible");
+        white.style.opacity = 1;
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    audio.pause();
-    audio.src = "songs/Cat.mp3";
-    audio.load();
-    audio.volume = 0;
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        audio.pause();
+        audio.src = "songs/Cat.mp3";
+        audio.load();
+        audio.volume = 0;
 
-    try {
-      await audio.play();
-      white.classList.add("visible-end");
-      await fadeInAudio();
-    } catch (error) {
-      console.error("Could not play Cat.mp3:", error);
-    }
-  }
+        try {
+          await audio.play();
+          white.classList.add("visible-end");
+          await fadeInAudio();
+        } catch (error) {
+          console.error("Could not play Cat.mp3:", error);
+        }
+      }
+      kostyl = 1;
+      break;
 
-  if (event.animationName === "white-visible-end") {
-    setTimeout(() => {
-      Omori.src = "gif/Omori-walk-forward.gif";
-      Omori.classList.add("Go-to-the-table");
-    }, 2000);
+    case 1:
+      setTimeout(() => {
+        dialogWindow.style.opacity = 1;
+        dialogue.style.opacity = 0;
+        noButton.style.opacity = 0;
+        yesButton.style.opacity = 0;
+        noButton.removeEventListener("click", handleNoAnswers);
+        dialogue.classList.add("visible");
+        noButton.classList.add("visible");
+        noButton.textContent = "...";
+        text1.innerHTML = "Mewo has been very, very bad.";
+        text2.innerHTML = "";
+        noButton.addEventListener("click", handleAnyAnswers);
+      }, 1000);
+      break;
+
+    case 2:
+      setTimeout(() => {
+        mewoOnTheTable.style.opacity = 0;
+        catDecisionRoom.style.opacity = 0;
+        tail.style.opacity = 1;
+        mewo.style.opacity = 1;
+        eyes.style.opacity = 1;
+        Omori.style.opacity = 0;
+        setTimeout(() => {
+          white.classList.remove("visible");
+          white.classList.add("visible-end");
+          setTimeout(() => {
+            dialogWindow.classList.add("visible");
+            text1.innerHTML =
+              "MEWO stares at you. She does not know what's happening.";
+            noButton.innerHTML = "Do nothing";
+            yesButton.innerHTML = "Cut open Mewo";
+          }, 1000);
+        }, 500);
+      }, 1000);
+      break;
+
+    default:
+      console.log("error");
   }
 });
+
+function handleAnyAnswers() {
+  dialogue.classList.remove("visible");
+  noButton.classList.remove("visible");
+  dialogWindow.style.opacity = 0;
+  setTimeout(() => {
+    Omori.src = "gif/Omori-walk-forward.gif";
+    Omori.classList.add("Go-to-the-table");
+  }, 1000);
+}
 
 Omori.addEventListener("animationend", () => {
   if (Omori.classList.contains("Go-to-the-table")) {
     Omori.classList.remove("Go-to-the-table");
     Omori.style.top = "69%";
     Omori.src = "Photo/Omori-stay-right.png";
+    setTimeout(() => {
+      white.style.backgroundColor = "#000000";
+      white.classList.remove("visible-end");
+      white.style.opacity = 0;
+      white.classList.add("visible");
+      kostyl = 2;
+    }, 1000);
   }
 });
 
