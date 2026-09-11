@@ -27,6 +27,7 @@ let NoAnswersCount = 0;
 let YesAnswersCount = 0;
 let kostyl = 0;
 let canOmoriWalk = true;
+let dialogTimer = null;
 const audioTargetVolume = 0.5;
 
 function fadeOutAudio(duration = 3000) {
@@ -174,18 +175,6 @@ Omori.addEventListener("animationend", () => {
   });
 });
 
-function handleYesAnswers() {
-  dialogWindow.classList.remove("visible");
-  dialogWindow.style.opacity = 0;
-  setTimeout(() => {
-    catDoor.src = "../gif/door-open.gif";
-    setTimeout(() => {
-      Omori.classList.add("Go-into-the-door");
-      Omori.src = "../gif/Omori-walk-back.gif";
-    }, 1500);
-  }, 1000);
-}
-
 Omori.addEventListener("animationend", () => {
   if (Omori.classList.contains("Go-into-the-door")) {
     Omori.classList.remove("Go-into-the-door");
@@ -231,11 +220,12 @@ white.addEventListener("animationend", async (event) => {
       break;
 
     case 1:
-      setTimeout(() => {
+      dialogTimer = setTimeout(() => {
         dialogWindow.style.opacity = 1;
-        dialogue.style.opacity = 0;
-        noButton.style.opacity = 0;
-        yesButton.style.opacity = 0;
+        dialogue.classList.remove("visible");
+        dialogue.style.opacity = "";
+        noButton.style.opacity = "";
+        yesButton.style.opacity = "0";
         noButton.removeEventListener("click", handleNoAnswers);
         dialogue.classList.add("visible");
         noButton.classList.add("visible");
@@ -257,16 +247,33 @@ white.addEventListener("animationend", async (event) => {
         setTimeout(() => {
           white.classList.remove("visible");
           white.classList.add("visible-end");
-          setTimeout(() => {
-            dialogWindow.classList.add("visible");
-            text1.innerHTML =
-              "MEWO stares at you. She does not know what's happening.";
-            noButton.innerHTML = "Do nothing";
-            yesButton.innerHTML = "Cut open Mewo";
-          }, 1000);
         }, 500);
       }, 1000);
+      kostyl = 3;
       break;
+
+    case 3:
+      setTimeout(() => {
+        dialogWindow.style.opacity = "1";
+        noButton.classList.remove("visible");
+        dialogue.classList.remove("visible");
+
+        void noButton.offsetWidth;
+        void dialogue.offsetWidth;
+
+        dialogue.classList.add("visible");
+        noButton.classList.add("visible");
+        yesButton.classList.add("visible");
+        noButton.style.width = "20%";
+        noButton.style.left = "76.82%";
+        yesButton.style.width = "20%";
+        yesButton.style.left = "76.82%";
+        text1.innerHTML =
+          "MEWO stares at you. She does not know what's happening.";
+        text2.innerHTML = "";
+        noButton.innerHTML = "Do nothing";
+        yesButton.innerHTML = "Cut open Mewo";
+      }, 1000);
 
     default:
       console.log("error");
@@ -297,6 +304,28 @@ Omori.addEventListener("animationend", () => {
     }, 1000);
   }
 });
+
+function handleYesAnswers() {
+  clearTimeout(dialogTimer);
+
+  dialogWindow.classList.remove("visible");
+  dialogue.classList.remove("visible");
+  noButton.classList.remove("visible");
+  yesButton.classList.remove("visible");
+
+  dialogWindow.style.opacity = "0";
+  dialogue.style.opacity = "0";
+  noButton.style.opacity = "0";
+  yesButton.style.opacity = "0";
+
+  setTimeout(() => {
+    catDoor.src = "../gif/door-open.gif";
+    setTimeout(() => {
+      Omori.classList.add("Go-into-the-door");
+      Omori.src = "../gif/Omori-walk-back.gif";
+    }, 1500);
+  }, 1000);
+}
 
 function handleNoAnswers() {
   NoAnswersCount++;

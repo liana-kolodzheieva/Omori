@@ -219,6 +219,10 @@ p {
   z-index: 90;
 }
 
+#yes.visible {
+  animation: yes-visible 1s linear forwards;
+}
+
 #window.visible {
   animation: window-visible 1s ease forwards;
 }
@@ -291,6 +295,15 @@ p {
   opacity: 0;
   position: absolute;
   z-index: 20;
+}
+
+@keyframes yes-visible {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes no-visible {
