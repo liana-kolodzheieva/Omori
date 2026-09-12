@@ -170,7 +170,7 @@ body {
 }
 
 #dialogue.visible {
-  animation: dialogue-visible 1s linear forwards;
+  animation: dialogue-visible 1s ease forwards;
 }
 
 p {
@@ -209,7 +209,7 @@ p {
 }
 
 #no.visible {
-  animation: no-visible 1s linear forwards;
+  animation: no-visible 1s ease forwards;
 }
 
 #yes {
@@ -220,7 +220,7 @@ p {
 }
 
 #yes.visible {
-  animation: yes-visible 1s linear forwards;
+  animation: yes-visible 1s ease forwards;
 }
 
 #window.visible {

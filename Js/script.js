@@ -210,23 +210,36 @@ white.addEventListener("animationend", async (event) => {
 
         try {
           await audio.play();
-          white.classList.add("visible-end");
-          await fadeInAudio();
         } catch (error) {
           console.error("Could not play Cat.mp3:", error);
         }
+
+        white.classList.remove("visible-end");
+        void white.offsetWidth;
+        white.classList.add("visible-end");
+        kostyl = 1;
+        console.log("test1: " + kostyl);
+        await fadeInAudio();
       }
-      kostyl = 1;
       break;
 
     case 1:
       dialogTimer = setTimeout(() => {
-        dialogWindow.style.opacity = 1;
+        console.log("Works! Kostyl:" + kostyl);
+        dialogWindow.classList.remove("visible");
         dialogue.classList.remove("visible");
-        dialogue.style.opacity = "";
-        noButton.style.opacity = "";
-        yesButton.style.opacity = "0";
+        noButton.classList.remove("visible");
+        yesButton.classList.remove("visible");
         noButton.removeEventListener("click", handleNoAnswers);
+
+        dialogWindow.style.opacity = "0";
+        dialogue.style.opacity = "0";
+        noButton.style.opacity = "0";
+        yesButton.style.opacity = "0";
+
+        void dialogWindow.offsetWidth;
+
+        dialogWindow.style.opacity = "1";
         dialogue.classList.add("visible");
         noButton.classList.add("visible");
         noButton.textContent = "...";
@@ -261,6 +274,12 @@ white.addEventListener("animationend", async (event) => {
         void noButton.offsetWidth;
         void dialogue.offsetWidth;
 
+        noButton.removeEventListener("click", handleNoAnswers);
+        yesButton.removeEventListener("click", handleYesAnswers);
+
+        yesButton.addEventListener("click", CutOpen);
+        noButton.addEventListener("click", DoNothing);
+
         dialogue.classList.add("visible");
         noButton.classList.add("visible");
         yesButton.classList.add("visible");
@@ -274,11 +293,53 @@ white.addEventListener("animationend", async (event) => {
         noButton.innerHTML = "Do nothing";
         yesButton.innerHTML = "Cut open Mewo";
       }, 1000);
+      break;
 
     default:
       console.log("error");
   }
 });
+
+function CutOpen() {
+  NoAnswersCount++;
+  switch (NoAnswersCount) {
+    case 1: {
+      text1.innerHTML =
+        "MEWO stares at you. She tilts her head out of curiosity.";
+      break;
+    }
+    case 2:
+      text1.innerHTML =
+        "MEWO stares at you. Her eyes widen. She wants to go now.";
+      eyes.src = "Photo/Eyes-2.png";
+      break;
+    case 3:
+      text1.innerHTML = "MEWO stares at you. She struggles to break free.";
+      eyes.src = "Photo/Eyes-3.png";
+      mewo.src = "gif/Mewo-emotion-2.gif";
+      break;
+    case 4:
+      text1.innerHTML =
+        "MEWO stares at you. Her eyes are filled with desperation.";
+      eyes.src = "Photo/Eyes-4.png";
+      break;
+    case 5:
+      text1.innerHTML =
+        "MEWO stares at you. She tries to scream, but there is no sound.";
+      eyes.src = "Photo/Eyes-5.png";
+      mewo.src = "gif/Mewo-emotion-3.gif";
+      break;
+    case 6:
+      text1.innerHTML =
+        "MEWO stares at you. She does not know what's happening.";
+      break;
+  }
+}
+
+function DoNothing() {}
+
+noButton.addEventListener("click", handleNoAnswers);
+yesButton.addEventListener("click", handleYesAnswers);
 
 function handleAnyAnswers() {
   dialogue.classList.remove("visible");
