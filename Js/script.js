@@ -104,7 +104,7 @@ function startGame() {
   video.play();
 
   blackLamp.style.opacity = "100%";
-  blackLamp.src = "../gif/white_lamp.gif";
+  blackLamp.src = "gif/white_lamp.gif";
   blackLamp.classList.add("move");
 
   blackRI.style.visibility = "hidden";
@@ -122,11 +122,11 @@ startDoor.addEventListener("animationend", () => {
   if (canOmoriWalk) {
     setTimeout(() => {
       Omori.classList.add("visible");
-      Omori.src = "../gif/Omori-walk-forward.gif";
+      Omori.src = "gif/Omori-walk-forward.gif";
     }, 1500);
 
     setTimeout(() => {
-      Omori.src = "../Photo/Omori-stay-right.png";
+      Omori.src = "Photo/Omori-stay-right.png";
     }, 4450);
 
     canOmoriWalk = false;
@@ -134,7 +134,7 @@ startDoor.addEventListener("animationend", () => {
 });
 
 Omori.addEventListener("animationend", () => {
-  startDoor.src = "../gif/door-close.gif";
+  startDoor.src = "gif/door-close.gif";
 
   setTimeout(() => {
     startDoor.classList.add("end");
@@ -148,14 +148,14 @@ startDoor.addEventListener("animationend", () => {
       Omori.style.top = "52%";
       Omori.style.opacity = "1";
       Omori.classList.add("go-to-the-door-right");
-      Omori.src = "../gif/Omori-walk-right.gif";
+      Omori.src = "gif/Omori-walk-right.gif";
     }, 2000);
   }
 });
 
 Omori.addEventListener("animationend", () => {
   if (!isGoingToTable && Omori.classList.contains("go-to-the-door-right")) {
-    Omori.src = "../gif/Omori-walk-back.gif";
+    Omori.src = "gif/Omori-walk-back.gif";
     Omori.classList.remove("go-to-the-door-right");
     Omori.style.left = "68.2%";
     Omori.classList.add("go-to-the-door-top");
@@ -167,7 +167,7 @@ Omori.addEventListener("animationend", () => {
     if (Omori.classList.contains("go-to-the-door-top")) {
       setTimeout(() => {
         Omori.classList.remove("go-to-the-door-top");
-        Omori.src = "../Photo/Omori-stay-back.png";
+        Omori.src = "Photo/Omori-stay-back.png";
         Omori.style.left = "68.2%";
         Omori.style.top = "38%";
       }, 2500);
@@ -192,7 +192,7 @@ Omori.addEventListener("animationend", () => {
       Omori.style.zIndex = 40;
       Omori.style.top = "51%";
       Omori.style.left = "47.8%";
-      Omori.src = "../Photo/Omori-stay-right.png";
+      Omori.src = "Photo/Omori-stay-right.png";
       Omori.style.opacity = 1;
     }, 4000);
   }
@@ -433,10 +433,10 @@ function handleYesAnswers() {
   yesButton.style.opacity = "0";
 
   setTimeout(() => {
-    catDoor.src = "../gif/door-open.gif";
+    catDoor.src = "gif/door-open.gif";
     setTimeout(() => {
       Omori.classList.add("Go-into-the-door");
-      Omori.src = "../gif/Omori-walk-back.gif";
+      Omori.src = "gif/Omori-walk-back.gif";
     }, 1500);
   }, 1000);
 }
