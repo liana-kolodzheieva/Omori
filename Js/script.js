@@ -22,11 +22,14 @@ const mewoOnTheTable = document.getElementById("Mewo-Table");
 const mewo = document.getElementById("emotion");
 const eyes = document.getElementById("eyes");
 const tail = document.getElementById("tail");
+const trambling = document.getElementById("trambl");
+const final = document.getElementById("final");
 
 let NoAnswersCount = 0;
 let YesAnswersCount = 0;
 let kostyl = 0;
 let canOmoriWalk = true;
+let isGoingToTable = false;
 let dialogTimer = null;
 const audioTargetVolume = 0.5;
 
@@ -151,7 +154,7 @@ startDoor.addEventListener("animationend", () => {
 });
 
 Omori.addEventListener("animationend", () => {
-  if (Omori.classList.contains("go-to-the-door-right")) {
+  if (!isGoingToTable && Omori.classList.contains("go-to-the-door-right")) {
     Omori.src = "../gif/Omori-walk-back.gif";
     Omori.classList.remove("go-to-the-door-right");
     Omori.style.left = "68.2%";
@@ -231,6 +234,7 @@ white.addEventListener("animationend", async (event) => {
         noButton.classList.remove("visible");
         yesButton.classList.remove("visible");
         noButton.removeEventListener("click", handleNoAnswers);
+        noButton.removeEventListener("click", handleYesAnswers);
 
         dialogWindow.style.opacity = "0";
         dialogue.style.opacity = "0";
@@ -275,6 +279,8 @@ white.addEventListener("animationend", async (event) => {
         void dialogue.offsetWidth;
 
         noButton.removeEventListener("click", handleNoAnswers);
+        noButton.removeEventListener("click", handleAnyAnswers);
+        noButton.removeEventListener("click", handleYesAnswers);
         yesButton.removeEventListener("click", handleYesAnswers);
 
         yesButton.addEventListener("click", CutOpen);
@@ -328,20 +334,67 @@ function CutOpen() {
         "MEWO stares at you. She tries to scream, but there is no sound.";
       eyes.src = "Photo/Eyes-5.png";
       mewo.src = "gif/Mewo-emotion-3.gif";
+      trambling.style.opacity = 1;
       break;
     case 6:
       text1.innerHTML =
         "MEWO stares at you. She does not know what's happening.";
       break;
+    case 7:
+      white.classList.remove("visible", "visible-end");
+      void white.offsetWidth;
+      white.style.backgroundColor = "#000000";
+      white.style.opacity = 1;
+      dialogWindow.classList.remove("visible");
+      dialogue.classList.remove("visible");
+      noButton.classList.remove("visible");
+      yesButton.classList.remove("visible");
+      audio.pause();
+      audio.src = "songs/stab.ogg";
+      audio.loop = false;
+      audio.load();
+      audio.currentTime = 0;
+      mewo.style.opacity = 0;
+      eyes.style.opacity = 0;
+      tail.style.opacity = 0;
+      dialogWindow.style.opacity = 0;
+      trambling.style.opacity = 0;
+      audio.play().catch((error) => {
+        console.error("Could not play stab.ogg:", error);
+      });
+
+      setTimeout(() => {
+        final.style.opacity = 1;
+        audio.pause();
+        audio.src = "songs/Final.mp3";
+        audio.loop = true;
+        audio.volume = audioTargetVolume;
+        audio.load();
+        audio.currentTime = 0;
+        white.style.opacity = 0;
+        audio.play().catch((error) => {
+          console.error("Could not play Final.mp3:", error);
+        });
+      }, 2000);
+      break;
   }
 }
 
-function DoNothing() {}
+function DoNothing() {
+  console.log("real nothing");
+}
 
 noButton.addEventListener("click", handleNoAnswers);
 yesButton.addEventListener("click", handleYesAnswers);
 
 function handleAnyAnswers() {
+  isGoingToTable = true;
+  Omori.classList.remove(
+    "visible",
+    "go-to-the-door-right",
+    "go-to-the-door-top",
+    "Go-into-the-door",
+  );
   dialogue.classList.remove("visible");
   noButton.classList.remove("visible");
   dialogWindow.style.opacity = 0;

@@ -297,6 +297,15 @@ p {
   z-index: 20;
 }
 
+#final {
+  opacity: 0;
+}
+
+#trambl {
+  position: absolute;
+  opacity: 0;
+  z-index: 60;
+}
 @keyframes yes-visible {
   0% {
     opacity: 0;
