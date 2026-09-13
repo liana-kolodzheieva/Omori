@@ -365,6 +365,11 @@ function CutOpen() {
 
       setTimeout(() => {
         final.style.opacity = 1;
+        final.muted = true;
+        final.currentTime = 0;
+        final.play().catch((error) => {
+          console.error("Could not play final.mp4:", error);
+        });
         audio.pause();
         audio.src = "songs/Final.mp3";
         audio.loop = true;
