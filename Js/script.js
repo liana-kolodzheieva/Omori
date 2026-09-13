@@ -99,7 +99,7 @@ function startMedia() {
 function startGame() {
   title.textContent = "BlackSpace";
   video.style.visibility = "visible";
-  audio.src = "../songs/BlackSpace.mp3";
+  audio.src = "songs/BlackSpace.mp3";
   audio.play();
   video.play();
 
